@@ -24,7 +24,7 @@ def forward_feature_selection(x_train, x_cv, y_train, y_cv, n):
 
         # sort the metric score in ascending order of euclidean distances.
         metric_list.sort(key=lambda x : x[0], reverse = False)
-        feature_set.append(metric_list[0][1])
+        feature_set.append(metric_list[0][1]) # add the element that has the least distance
     return feature_set
 
 

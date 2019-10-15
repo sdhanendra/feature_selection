@@ -23,7 +23,7 @@ def backward_feature_selection(x_train, x_cv, y_train, y_cv, n):
                 metric_list.append((evaluate_metric(model, x_cv[:,f_set], y_cv), feature))
 
         metric_list.sort(key=lambda x : x[0], reverse = False)
-        feature_set.remove(metric_list[0][1])
+        feature_set.remove(metric_list[0][1]) # remove the element that makes the least difference in the score. (min distance)
     return feature_set
 
 
@@ -35,7 +35,7 @@ def main():
     y = data[:, 0]
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=50)
-    feature_set = backward_feature_selection(X_train, X_test, y_train, y_test, 5)
+    feature_set = backward_feature_selection(X_train, X_test, y_train, y_test, 4)
 
     print(feature_set)
 
