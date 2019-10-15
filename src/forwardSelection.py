@@ -36,7 +36,7 @@ def main():
     y = data[:, 0]
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=50)
-    feature_set = forward_feature_selection(X_train, X_test, y_train, y_test, 5)
+    feature_set = forward_feature_selection(X_train, X_test, y_train, y_test, 4)
 
     print(feature_set)
 
