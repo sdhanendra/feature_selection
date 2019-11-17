@@ -2,7 +2,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 
 from src.forwardSelection import forward_feature_selection
-from src.backwardSelection import backward_feature_selection_p_value
+from src.backwardSelection import backward_feature_selection_p_value, backward_feature_selection
 from utils.helper_utils import prepare_data, plot_mean_error_vs_num_features
 
 
@@ -19,7 +19,7 @@ def optimal_features(X_train, X_test, y_train, y_test, feature_selection_method)
         if feature_selection_method == 'forward':
             feature_set = forward_feature_selection(X_train, X_test, y_train, y_test, num)
         elif feature_selection_method == 'backward':
-            feature_set = backward_feature_selection_p_value(X_train, X_test, y_train, y_test, num)
+            feature_set = backward_feature_selection(X_train, X_test, y_train, y_test, num)
 
         # fit the model on training given the feature set
         model.fit(X_train[:, feature_set], y_train)
