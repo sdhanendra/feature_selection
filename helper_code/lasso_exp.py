@@ -4,7 +4,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 import numpy as np
 
+
 lambda_list = [0.01, 0.05, 0.1, 0.2, 0.3]
+
 
 def train(lambda_list, train_x, train_y, model_name):
     coeffiecient_list = []
@@ -19,6 +21,7 @@ def train(lambda_list, train_x, train_y, model_name):
         coefficients = classifier.coef_
         coeffiecient_list.append(coefficients)
     return classifier_list, coeffiecient_list
+
 
 def predict(test_x, test_y, classifier_list):
     mean_squared_error_list = []

@@ -1,8 +1,9 @@
 from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 import numpy as np
 from scipy import stats
+
+from utils.helper_utils import prepare_data
 
 
 class LinearRegression(LinearRegression):
@@ -38,7 +39,6 @@ class LinearRegression(LinearRegression):
         return self
 
 
-
 def evaluate_metric(model, x_cv, y_cv):
     return mean_squared_error(y_cv, model.predict(x_cv))
 
@@ -48,6 +48,7 @@ def evaluate_metric_p_value(model, x_cv, y_cv):
     return res.p
 
 
+# heuristic based approach
 def backward_feature_selection(x_train, x_cv, y_train, y_cv, n):
     feature_set = [x for x in range(len(x_train[0]))]
     while len(feature_set) > n:
@@ -67,6 +68,7 @@ def backward_feature_selection(x_train, x_cv, y_train, y_cv, n):
     return feature_set
 
 
+# select features based on p values
 def backward_feature_selection_p_value(x_train, x_cv, y_train, y_cv, n):
     feature_set = [x for x in range(len(x_train[0]))]
     while len(feature_set) > n:
@@ -91,12 +93,7 @@ def backward_feature_selection_p_value(x_train, x_cv, y_train, y_cv, n):
 
 def main():
     # load data
-    data = np.genfromtxt('../data/data.csv', delimiter=',')
-
-    X = data[:, 1:]
-    y = data[:, 0]
-
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=50)
+    X_train, X_test, y_train, y_test = prepare_data()
 
     feature_set = backward_feature_selection(X_train, X_test, y_train, y_test, 4)
     print(feature_set)
