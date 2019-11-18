@@ -42,3 +42,27 @@ def prepare_wine_quality_test_data():
 
     return X_test, ids
 
+
+def prepare_million_song_data():
+    # data = np.genfromtxt('../../data/million-song-dataset/YearPrediction_500_samples.csv', delimiter=',', skip_header=0)
+    data = np.genfromtxt('../../data/million-song-dataset/YearPredictionMSD.csv', delimiter=',', skip_header=0)
+
+    X = data[:, 1:]
+    y = data[:, 0]
+
+    # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=1234)
+
+    """You should respect the following train / test split:
+    train: first 463,715 examples
+    test: last 51,630 examples
+    It avoids the 'producer effect' by making sure no song
+    from a given artist ends up in both the train and test set."""
+
+    X_train = X[0:463715, :]
+    y_train = y[0:463715]
+
+    X_test = X[463715:, :]
+    y_test = y[463715:]
+
+    return X_train, X_test, y_train, y_test
+
