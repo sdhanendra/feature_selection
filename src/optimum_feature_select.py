@@ -26,7 +26,7 @@ def optimal_features(X_train, X_test, y_train, y_test, feature_selection_method)
 
         mean_square_error = mean_squared_error(y_test, model.predict(X_test[:, feature_set]))
 
-        print(feature_set, ' :: ', mean_square_error)
+        # print(feature_set, ' :: ', mean_square_error)
 
         num_feature_list.append(len(feature_set))
         error_list.append(mean_square_error)
