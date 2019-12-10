@@ -10,9 +10,9 @@ def main():
     num_feature_list, error_list = optimal_features(X_train, X_test, y_train, y_test, feature_selection_method='forward')
     plot_mean_error_vs_num_features(num_feature_list, error_list)
 
-    # # backward feature selection
-    # num_feature_list, error_list = optimal_features(X_train, X_test, y_train, y_test, feature_selection_method='backward')
-    # plot_mean_error_vs_num_features(num_feature_list, error_list)
+    # backward feature selection
+    num_feature_list, error_list = optimal_features(X_train, X_test, y_train, y_test, feature_selection_method='backward')
+    plot_mean_error_vs_num_features(num_feature_list, error_list)
 
 
 if __name__ == '__main__':

@@ -20,14 +20,15 @@ def write_solution_to_file(y_test):
 def calc_accuracy(y, y_hat):
 
     total = len(y)
-    count = 0
+    error_sum = 0
 
     for yi, y_hati in zip(y, y_hat):
-        if int(yi) == round(y_hati):
-            count += 1
+        print(yi, ' :: ', y_hati)
+        error_sum = error_sum +  abs(yi - y_hati)
 
-    accuracy = count/total
-    return accuracy
+    print(error_sum)
+    mean_error = error_sum/total
+    return mean_error
 
 
 def prediction(selection_method):
@@ -35,9 +36,9 @@ def prediction(selection_method):
     X_train, X_test, y_train, y_test = prepare_million_song_data()
 
     if selection_method == 'forward':
-        feature_set = forward_feature_selection(X_train, X_test, y_train, y_test, 46)
+        feature_set = forward_feature_selection(X_train, X_test, y_train, y_test, 40)
     elif selection_method == 'backward':
-        feature_set = backward_feature_selection_p_value(X_train, X_test, y_train, y_test, 46)
+        feature_set = backward_feature_selection_p_value(X_train, X_test, y_train, y_test, 40)
 
 
     model = LinearRegression()
@@ -45,20 +46,19 @@ def prediction(selection_method):
 
     y_test_pred = model.predict(X_test[:, feature_set])
 
+    mean_error = calc_accuracy(y_test, y_test_pred)
 
-    accuracy = calc_accuracy(y_test, y_test_pred)
-
-    print(accuracy)
+    print(mean_error)
 
     # print(feature_set)
     return y_test_pred
 
 
 def main():
-    y_test = prediction(selection_method='forward')
+    # y_test = prediction(selection_method='forward')
     # write_solution_to_file(y_test)
 
-    # ids, y_test = prediction(selection_method='backward')
+    y_test = prediction(selection_method='backward')
     # write_solution_to_file(ids, y_test)
 
 
