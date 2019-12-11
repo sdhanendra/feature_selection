@@ -19,11 +19,12 @@ def prepare_data():
 
 
 def plot_mean_error_vs_num_features(num_feature_list, error_list):
-
+    fig = plt.figure()
     plt.plot(num_feature_list, error_list, '-*')
     plt.xlabel('Number of features')
     plt.ylabel('Mean Squared Error')
     plt.show()
+    fig.savefig(BASE_PATH + '/figures/mse_vs_features.png')
 
 
 def prepare_wine_quality_data():
@@ -76,13 +77,14 @@ def prepare_million_song_data():
 def plot_time_error_bar_graph(mean_square_errors, time_deltas, n_feature1, n_feature2):
     index = np.arange(len(mean_square_errors))
     bar_width = 0.25
-
-    p1 = plt.bar(index, mean_square_errors, bar_width, label='Mean Squared Error')
+    fig = plt.figure()
+    p1 = plt.bar(index, mean_square_errors, bar_width, label='L1 Error')
     p2 = plt.bar(index + bar_width, time_deltas, bar_width, label='training time (ms)')
     plt.xticks(index + bar_width, (n_feature1, n_feature2))
     plt.xlabel('number of features')
-    plt.ylabel('mse and time')
+    plt.ylabel('l1e and time')
     plt.legend()
     plt.show()
+    fig.savefig(BASE_PATH + '/figures/error_bar_plot.png')
 
 

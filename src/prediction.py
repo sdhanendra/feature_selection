@@ -39,9 +39,9 @@ def prediction(selection_method, num_features):
 
 
 def main():
-    mean_square_error1, time_diff1 = prediction(selection_method='forward', num_features=4)
+    mean_square_error1, time_diff1 = prediction(selection_method='backward', num_features=4)
 
-    mean_square_error2, time_diff2 = prediction(selection_method='forward', num_features=9)
+    mean_square_error2, time_diff2 = prediction(selection_method='backward', num_features=9)
 
     mean_square_errors = [mean_square_error1, mean_square_error2]
     time_deltas = [time_diff1, time_diff2]
